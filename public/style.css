@@ -1,0 +1,35 @@
+.image{
+    border-radius: 30px;
+}
+
+.about-desc{
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-desc img{
+    border-radius: 30px;
+}
+
+.about-desc table{
+    margin-left: 20px;
+}
+
+.about{
+    width: 60%;
+    margin: 10px auto;
+    background: #e9ecef;
+    padding: 10px 5px;
+    border-radius: 20px;
+    box-shadow: grey 5px 5px 5px;
+}
+
+.overall-stat{
+    margin: 30px 0;
+}
+
+.footer{
+    margin: 20px;
+}

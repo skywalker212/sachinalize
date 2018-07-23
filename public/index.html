@@ -6,20 +6,202 @@
     <meta name="description" content="a view at Sachin Tendulkar's Career">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- FAVICON COURTESY Freepik  -->
+    <link rel="icon" href="./favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
         crossorigin="anonymous">
     <link rel="stylesheet" href="./style.css">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
 
 </head>
 
 <body>
-    <div class="container">
-        <h1>Sachinalize</h1
+    <nav class="navbar navbar-light bg-light">
+        <h3>Sachinalize</h3>
         <p>An analytics view of Mr. Sachin Tendulkar's Career</p>
+        <button type="button" class="btn btn-primary float-right" id="esstatus" data-toggle="modal" data-target="#exampleModal">Get Server Status</button>
+    </nav>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">ElasticSearch Server Status</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <pre>please wait...</pre>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
+    <div class="container">
+        <div class="about">
+            <h3 class="text-center">About Sachin Tendulkar</h3>
+            <div class="about-desc">
+                <img src="./sachin.jpg" alt="Sachin Tendulkar">
+                <table>
+                    <tr>
+                        <th>Full Name: </th>
+                        <td>Sachin Ramesh Tendulkar
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Born: </th>
+                        <td>24 April 1973 (age 45)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Height: </th>
+                        <td>5 ft 5 in (165 cm)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Batting: </th>
+                        <td>Right-handed
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Bowling: </th>
+                        <td>Right-arm medium, leg break, off break
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Role: </th>
+                        <td>Batsman
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="overall-stat text-center">
+            <h3>Overall Statistics</h3>
+            <table style="width:100%; margin:-1px; white-space:nowrap;">
+                <tbody>
+                    <tr>
+                        <th style="width:6em; padding-right:1em">Competition</th>
+                        <th>
+                            Test
+                        </th>
+                        <th>
+                            ODI
+                        </th>
+                        <th>
+                            FC
+                        </th>
+                        <th>
+                            LA
+                        </th>
+                    </tr>
+                    <tr>
+                        <th style="width:6em; padding-right:1em">Matches</th>
+                        <td>200</td>
+                        <td>463</td>
+                        <td>310</td>
+                        <td>551</td>
+                    </tr>
+                    <tr>
+                        <th style="width:6em; padding-right:1em">Runs scored</th>
+                        <td>15,921</td>
+                        <td>18,426</td>
+                        <td>25,396</td>
+                        <td>21,999</td>
+                    </tr>
+                    <tr>
+                        <th style="width:6em; padding-right:1em">
+                            Batting average
+                        </th>
+                        <td>53.78</td>
+                        <td>44.83</td>
+                        <td>57.84</td>
+                        <td>45.54</td>
+                    </tr>
+                    <tr>
+                        <th style="width:6em; padding-right:1em">100s/50s</th>
+                        <td>51/68</td>
+                        <td>49/96</td>
+                        <td>81/116</td>
+                        <td>60/114</td>
+                    </tr>
+                    <tr>
+                        <th style="width:6em; padding-right:1em">Top score</th>
+                        <td>248*</td>
+                        <td>200*</td>
+                        <td>248*</td>
+                        <td>200*</td>
+                    </tr>
+                    <tr>
+                        <th style="width:6em; padding-right:1em">
+                            Balls bowled</th>
+                        <td>4,240</td>
+                        <td>8,054</td>
+                        <td>7,605</td>
+                        <td>10,230</td>
+                    </tr>
+                    <tr>
+                        <th style="width:6em; padding-right:1em">
+                            Wickets
+                        </th>
+                        <td>46</td>
+                        <td>154</td>
+                        <td>71</td>
+                        <td>201</td>
+                    </tr>
+                    <tr>
+                        <th style="width:6em; padding-right:1em">
+                            Bowling average
+                        </th>
+                        <td>54.17</td>
+                        <td>44.48</td>
+                        <td>61.74</td>
+                        <td>42.17</td>
+                    </tr>
+                    <tr>
+                        <th style="width:6em; padding-right:1em">5 wickets in innings
+                        </th>
+                        <td>0</td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <th style="width:6em; padding-right:1em">10 wickets in match</th>
+                        <td>0</td>
+                        <td>n/a</td>
+                        <td>0</td>
+                        <td>n/a</td>
+                    </tr>
+                    <tr>
+                        <th style="width:6em; padding-right:1em">Best bowling</th>
+                        <td>3/10</td>
+                        <td>5/32</td>
+                        <td>3/10</td>
+                        <td>5/32</td>
+                    </tr>
+                    <tr>
+                        <th style="width:6em; padding-right:1em">Catches/ stumpings
+                        </th>
+                        <td>115/–</td>
+                        <td>140/–</td>
+                        <td>186/–</td>
+                        <td>175/–</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="text-center footer">made with <span role="img" style="color:red" aria-label="jsx-ally/accessible-emoji">❤️</span> by <a href="https://github.com/skywalker212" style="text-decoration:none" rel="noopener noreferrer" target="_blank">akash</a>
+    </p>
+    </div>
+
     <script src="./script.js"></script>
 </body>
 

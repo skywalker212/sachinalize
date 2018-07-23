@@ -1,0 +1,25 @@
+PUT sachin
+{
+  "mappings":{
+    "data":{
+      "properties":{
+        "batting_score": {"type":"integer"},
+        "wickets": {"type":"integer"},
+        "runs_conceded": {"type":"integer"},
+        "catches": {"type":"integer"},
+        "stumps": {"type":"integer"},
+        "opposition": {"type":"text"},
+        "ground": {"type":"text"},
+        "date": {
+          "type":"date",
+          "format": "dd MMM yyyy",
+          "null_value": "NULL"
+        },
+        "match_result":{"type":"text"},
+        "result_margin":{"type":"text"},
+        "toss":{"type":"text"},
+        "batting_innings":{"type":"text"}
+      }
+    }
+  }
+}
