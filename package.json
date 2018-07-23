@@ -1,0 +1,30 @@
+{
+  "name": "sachinalize",
+  "version": "1.0.0",
+  "description": "An analysis of Sachin Tendulkar's career.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified but we will return 0 so travis will stay calm\" && exit 0",
+    "start": "node app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skywalker212/sachinalize.git"
+  },
+  "keywords": [
+    "node",
+    "elasticsearch"
+  ],
+  "author": "Akash Gajjar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/skywalker212/sachinalize/issues"
+  },
+  "homepage": "https://github.com/skywalker212/sachinalize#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "dotenv": "^6.0.0",
+    "elasticsearch": "^15.1.1",
+    "express": "^4.16.3"
+  }
+}
