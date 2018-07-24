@@ -11,23 +11,24 @@ export default class Navbar extends React.Component{
     }
 
     render(){
+        console.log(this.props.active);
         return (
             <div>
                 <nav className="navbar navbar-expand-lg navbar-light bg-light">
                     <Link className="navbar-brand" to="/">Sachinalize</Link>
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav">
-                            <li className="nav-item active">
+                            <li className={"nav-item"+(this.props.active==="home"?" active":"")}>
                                 <Link className="nav-link" to="/">Home</Link>
                             </li>
-                            <li className="nav-item">
+                            <li className={"nav-item"+(this.props.active==="analytics"?" active":"")}>
                                 <Link className="nav-link" to="/analytics">Analytics</Link>
                             </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="#">Comparison</Link>
+                            <li className={"nav-item"+(this.props.active==="comparison"?" active":"")}>
+                                <Link className="nav-link" to="/comparison">Comparison</Link>
                             </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="#">Conclusion</Link>
+                            <li className={"nav-item"+(this.props.active==="conclusion"?" active":"")}>
+                                <Link className="nav-link" to="/conclusion">Conclusion</Link>
                             </li>
                         </ul>
                     </div>
