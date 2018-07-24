@@ -1,0 +1,10 @@
+.highlight{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    align-items: center;
+}
+
+.highlight div{
+    width: 70%;
+    margin: 30px auto;
+}

@@ -5,6 +5,22 @@ const port = process.env.PORT || 3000;
 const dotenv = require("dotenv");
 const path = require("path");
 const es = require("elasticsearch");
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
+const publicPath = path.resolve(process.cwd(), 'public');
+
+const webpack = require("webpack");
+const wpconfig = require("../../webpack.common.js");
+const compiler = webpack(wpconfig);
+
+app.use(webpackDevMiddleware(compiler, {
+    publicPath: wpconfig.output.publicPath,
+    stats: {colors: true}
+}));
+
+app.use(webpackHotMiddleware(compiler, {
+    log: console.log
+}));
 
 global.path = path;
 global.dotenv = dotenv;
@@ -19,13 +35,9 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
-app.use(express.static(__dirname + '/public'));
-
-app.get('/', function (request, response) {
-    response.render("index");
-});
+app.use(express.static(publicPath));
 
 app.get('/status', (req, res) => {
     client.cluster.health(function (err, resp) {
@@ -36,6 +48,10 @@ app.get('/status', (req, res) => {
         }
     });
 });
+
+app.get('*', function(req, res){
+    res.sendFile(path.resolve(publicPath, 'index.html'));
+})
 
 app.listen(port, () => {
     console.log('app running on port: ', port);
