@@ -23,9 +23,12 @@ const CSSExtract = new ExtractTextPlugin('styles.css');
 module.exports = {
   mode:isProduction?'production':'development',
   devtool: isProduction ? 'source-map' : 'inline-source-map',
+  stats:{
+    warnings:false
+  },
   entry: [
     'webpack/hot/dev-server',
-    'webpack-hot-middleware/client',
+    'webpack-hot-middleware/client.js?quite=true',
     'babel-polyfill',
     'react-hot-loader/patch',
     paths.entryClient,

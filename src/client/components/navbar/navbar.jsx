@@ -11,7 +11,6 @@ export default class Navbar extends React.Component{
     }
 
     render(){
-        console.log(this.props.active);
         return (
             <div>
                 <nav className="navbar navbar-expand-lg navbar-light bg-light">

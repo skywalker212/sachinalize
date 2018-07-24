@@ -13,14 +13,16 @@ const webpack = require("webpack");
 const wpconfig = require("../../webpack.common.js");
 const compiler = webpack(wpconfig);
 
-app.use(webpackDevMiddleware(compiler, {
-    publicPath: wpconfig.output.publicPath,
-    stats: {colors: true}
-}));
-
-app.use(webpackHotMiddleware(compiler, {
-    log: console.log
-}));
+if(process.env.NODE_ENV!=='production'){
+    console.log("in developer environment");
+    app.use(webpackDevMiddleware(compiler, {
+        publicPath: wpconfig.output.publicPath,
+        stats: {colors: true}
+    }));
+    app.use(webpackHotMiddleware(compiler, {
+        log: console.log
+    }));
+}
 
 global.path = path;
 global.dotenv = dotenv;
