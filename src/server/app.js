@@ -8,21 +8,22 @@ const es = require("elasticsearch");
 const queries = require("./queries/queries.js");
 const publicPath = path.resolve(process.cwd(), 'public');
 
-//setup webpack environment
-const webpack = require("webpack");
-const wpconfig = require("../../webpack.common.js");
-const compiler = webpack(wpconfig);
-const webpackDevMiddleware = require('webpack-dev-middleware');
-const webpackHotMiddleware = require('webpack-hot-middleware');
-
-if(process.env.NODE_ENV!=='production'){
-    console.log("in developer environment");
+if (process.env.NODE_ENV !== 'production') {
+    //setup webpack environment
+    const webpack = require("webpack");
+    const wpconfig = require("../../webpack.common.js");
+    const compiler = webpack(wpconfig);
+    const webpackDevMiddleware = require('webpack-dev-middleware');
+    const webpackHotMiddleware = require('webpack-hot-middleware');
     app.use(webpackDevMiddleware(compiler, {
         publicPath: wpconfig.output.publicPath,
-        stats: {colors: true}
+        stats: {
+            colors: true
+        }
     }));
     app.use(webpackHotMiddleware(compiler, {
-        log: console.log
+        log: console.log,
+        reload: true
     }));
 }
 
@@ -56,57 +57,59 @@ app.get('/status', (req, res) => {
     });
 });
 
-app.get('/aggregation',(req,res)=>{
+app.get('/aggregation', (req, res) => {
     switch (req.query.type) {
         case 'grounds':
-            makeRequest(queries.grounds).then((data)=>{
+            makeRequest(queries.grounds).then((data) => {
                 res.json(data);
-            }).catch((error)=>{
+            }).catch((error) => {
                 res.json(error);
             });
             break;
         case 'innings':
-            makeRequest(queries.innings).then((data)=>{
+            makeRequest(queries.innings).then((data) => {
                 res.json(data);
-            }).catch((error)=>{
+            }).catch((error) => {
                 res.json(error);
             });
             break;
         case 'opposition':
-            makeRequest(queries.opposition).then((data)=>{
+            makeRequest(queries.opposition).then((data) => {
                 res.json(data);
-            }).catch((error)=>{
+            }).catch((error) => {
                 res.json(error);
             });
             break;
         case 'result':
-            makeRequest(queries.result).then((data)=>{
+            makeRequest(queries.result).then((data) => {
                 res.json(data);
-            }).catch((error)=>{
+            }).catch((error) => {
                 res.json(error);
             });
             break;
         case 'runs-range':
-            makeRequest(queries.runs_range).then((data)=>{
+            makeRequest(queries.runs_range).then((data) => {
                 res.json(data);
-            }).catch((error)=>{
+            }).catch((error) => {
                 res.json(error);
             });
             break;
         case 'year':
-            makeRequest(queries.year).then((data)=>{
+            makeRequest(queries.year).then((data) => {
                 res.json(data);
-            }).catch((error)=>{
+            }).catch((error) => {
                 res.json(error);
             });
             break;
         default:
-            res.json({"error":"invalid request query"});
+            res.json({
+                "error": "invalid request query"
+            });
             break;
     }
 });
 
-app.get('*', function(req, res){
+app.get('*', function (req, res) {
     res.sendFile(path.resolve(publicPath, 'index.html'));
 });
 
@@ -115,15 +118,15 @@ app.listen(port, () => {
     console.log('app running on port: ', port);
 });
 
-const makeRequest = (query)=>{
-    return new Promise((resolve,reject)=>{
+const makeRequest = (query) => {
+    return new Promise((resolve, reject) => {
         client.search({
-            index:'sachin',
-            type:'data',
-            body:query
-        }).then(function(data){
+            index: 'sachin',
+            type: 'data',
+            body: query
+        }).then(function (data) {
             resolve(data);
-        }).catch(function(error){
+        }).catch(function (error) {
             reject(error);
         });
     });
