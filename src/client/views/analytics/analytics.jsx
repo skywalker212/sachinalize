@@ -2,9 +2,11 @@ import React from 'react';
 import Footer from '../../components/footer/footer.jsx';
 import Navbar from '../../components/navbar/navbar.jsx';
 import $ from 'jquery';
+import Graph from '../../components/graph/graph.jsx';
+import './analytics.scss';
 
 const Description = ()=>(
-  <p>I am going to analyze Sachin Tendulkar's career only based on batting score since he is more of a batsman than a bowler.</p>
+  <p>I am going to analyze Sachin Tendulkar's glorious career only based on batting score since he is more of a batsman than a bowler.</p>
 );
 
 class Analytics extends React.Component {
@@ -24,11 +26,7 @@ class Analytics extends React.Component {
         <Navbar active="analytics"/>
         <div className="container">
           <Description />
-          <form>
-          <input type='text' name='query' id='query-type'/>
-          <button onClick={this.getData}>Click Here</button>
-          </form>
-          <pre className="show-data"></pre>
+          <Graph/>
         </div>
         <Footer />
       </div>

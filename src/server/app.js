@@ -57,7 +57,53 @@ app.get('/status', (req, res) => {
 });
 
 app.get('/aggregation',(req,res)=>{
-    console.log(req.query.type);
+    switch (req.query.type) {
+        case 'grounds':
+            makeRequest(queries.grounds).then((data)=>{
+                res.json(data);
+            }).catch((error)=>{
+                res.json(error);
+            });
+            break;
+        case 'innings':
+            makeRequest(queries.innings).then((data)=>{
+                res.json(data);
+            }).catch((error)=>{
+                res.json(error);
+            });
+            break;
+        case 'opposition':
+            makeRequest(queries.opposition).then((data)=>{
+                res.json(data);
+            }).catch((error)=>{
+                res.json(error);
+            });
+            break;
+        case 'result':
+            makeRequest(queries.result).then((data)=>{
+                res.json(data);
+            }).catch((error)=>{
+                res.json(error);
+            });
+            break;
+        case 'runs-range':
+            makeRequest(queries.runs_range).then((data)=>{
+                res.json(data);
+            }).catch((error)=>{
+                res.json(error);
+            });
+            break;
+        case 'year':
+            makeRequest(queries.year).then((data)=>{
+                res.json(data);
+            }).catch((error)=>{
+                res.json(error);
+            });
+            break;
+        default:
+            res.json({"error":"invalid request query"});
+            break;
+    }
 });
 
 app.get('*', function(req, res){
@@ -68,3 +114,17 @@ app.get('*', function(req, res){
 app.listen(port, () => {
     console.log('app running on port: ', port);
 });
+
+const makeRequest = (query)=>{
+    return new Promise((resolve,reject)=>{
+        client.search({
+            index:'sachin',
+            type:'data',
+            body:query
+        }).then(function(data){
+            resolve(data);
+        }).catch(function(error){
+            reject(error);
+        });
+    });
+}
