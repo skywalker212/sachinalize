@@ -59,6 +59,13 @@ app.get('/status', (req, res) => {
 
 app.get('/aggregation', (req, res) => {
     switch (req.query.type) {
+        case "runs":
+            makeRequest(queries.runs).then((data)=>{
+                res.json(data);
+            }).catch((error)=>{
+                res.json(error);
+            });
+            break;
         case 'grounds':
             makeRequest(queries.grounds).then((data) => {
                 res.json(data);
