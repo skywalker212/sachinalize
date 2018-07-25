@@ -1,0 +1,158 @@
+aggregate runs in ranges of 25
+GET sachin/data/_search
+{
+    "size":0,
+    "aggs" : {
+        "sachin" : {
+            "range" : {
+                "field" : "batting_score",
+                "keyed" : true,
+                "ranges" : [
+                  { "key" : "didn't play", "from":-3, "to":-1},
+                  { "key" : "0-25", "from":0 , "to":26 },
+                  { "key" : "26-50", "from":25 , "to":51 },
+                  { "key" : "51-75", "from":51 , "to":76 },
+                  { "key" : "76-100", "from":76 , "to":101 },
+                  { "key" : "101-125", "from":101 , "to": 126},
+                  { "key" : "126-150", "from":125 , "to":151 },
+                  { "key" : "151-175", "from":151 , "to":176 },
+                  { "key" : "176-200", "from":176 , "to":201 },
+                  { "key" : "200-INF", "from" : 200 }
+                ]
+            }
+        }
+    }
+}
+
+------------------------------------------------------------------------------
+show buckets of runs scored till 300
+
+GET sachin/data/_search
+{
+  "size": 0, 
+  "aggs": {
+    "grounds":{
+      "terms": {
+        "field": "batting_score",
+        "size": 300
+      }
+    }
+  }
+}
+
+------------------------------------------------------------------------------
+total runs scored bucketed by grounds
+
+GET sachin/data/_search
+{
+  "size": 0, 
+  "aggs": {
+    "grounds":{
+      "terms": {
+        "field": "ground.keyword",
+        "size": 100
+      },
+      "aggs": {
+        "runs": {
+          "sum": {
+            "field": "batting_score"
+          }
+        }
+      }
+    }
+  }
+}
+
+------------------------------------------------------------------------------
+runs scored in particular year
+
+GET sachin/data/_search
+{
+  "size": 0, 
+  "aggs": {
+    "runs_in_years":{
+      "date_histogram": {
+        "field": "date",
+        "interval": "year"
+      },
+      "aggs": {
+        "runs": {
+          "sum": {
+            "field": "batting_score"
+          }
+        }
+      }
+    }
+  }
+}
+
+-------------------------------------------------------------------------------
+runs scored against a particular opposition
+
+GET sachin/data/_search
+{
+  "size": 0, 
+  "aggs": {
+    "grounds":{
+      "terms": {
+        "field": "opposition.keyword",
+        "size": 100
+      },
+      "aggs": {
+        "runs": {
+          "sum": {
+            "field": "batting_score"
+          }
+        }
+      }
+    }
+  }
+}
+
+--------------------------------------------------------------------------------
+runs scored by inning
+
+GET sachin/data/_search
+{
+  "size": 0, 
+  "aggs": {
+    "grounds":{
+      "terms": {
+        "field": "batting_innings.keyword",
+        "size": 10
+      },
+      "aggs": {
+        "runs": {
+          "sum": {
+            "field": "batting_score"
+          }
+        }
+      }
+    }
+  }
+}
+
+----------------------------------------------------------------------------------
+total runs based on match result
+
+GET sachin/data/_search
+{
+  "size": 0, 
+  "aggs": {
+    "grounds":{
+      "terms": {
+        "field": "match_result.keyword",
+        "size": 10
+      },
+      "aggs": {
+        "runs": {
+          "sum": {
+            "field": "batting_score"
+          }
+        }
+      }
+    }
+  }
+}
+
+----------------------------------------------------------------------------------
