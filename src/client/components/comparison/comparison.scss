@@ -1,0 +1,68 @@
+.comparison {
+    max-width: 940px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 10px;
+}
+
+.comparison img{
+    width: 60%;
+    height: auto;
+    padding: 5px;
+    border-radius: 20px;
+}
+
+.comparison table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
+    border-bottom: 1px solid #CCC;
+}
+
+.comparison td,.comparison th {
+    border-right: 1px solid #CCC;
+    border-left: 1px solid #CCC;
+    padding: 10px;
+}
+
+.grey-row {
+    background: rgb(225, 225, 225);
+}
+
+.comparison th {
+    font-weight: normal;
+    padding: 0;
+    border-bottom: 1px solid #CCC;
+}
+
+
+.green,
+.blue,
+.red{
+    color: #FFF;
+    padding: 10px;
+    font-size: 17px !important;
+    border-bottom: 0;
+}
+
+.attr{
+    font-size: 15px;
+    font-weight: bold !important;
+}
+
+.blue {
+    background: #0078C1;
+}
+
+.green {
+    background: #009E2C;
+    border-top-right-radius: 10px;
+    border-right: none !important;
+}
+
+.red {
+    background: #f00;
+    border-top-left-radius: 10px;
+    border-left: none !important;
+}
