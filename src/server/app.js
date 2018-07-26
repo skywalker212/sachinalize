@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 const dotenv = require("dotenv");
 const path = require("path");
 const es = require("elasticsearch");
