@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 const dotenv = require("dotenv");
 const path = require("path");
 const es = require("elasticsearch");
@@ -121,7 +121,7 @@ app.get('*', function (req, res) {
 });
 
 //listen to configured port
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
     console.log('app running on port: ', port);
 });
 
