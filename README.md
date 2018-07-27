@@ -26,8 +26,6 @@ There are four(4) pages in the site. The pages are Home, Analytics, Comparison, 
 
 ```md
 ├── es-helper - helper queries related to elasticsearch and other stuff like mapping info for the document
-│   ├── css
-│   │   ├── **/*.css
 │   ├── mapping-info
 │   └── queries
 ├── tests - folder containing ui and unit tests
@@ -46,7 +44,8 @@ There are four(4) pages in the site. The pages are Home, Analytics, Comparison, 
 │   │   ├── index.scss - main scss file for styling
 |   │   └── index.html - vanilla html page, where the js will be injected
 │   └── server
-│       ├── **/*.css
+|       ├── queries - helper functions to get the query objects related to elasticsearch
+|       └── app.js - our main server file
 ├── .babelrc - config file for babel
 ├── LICENSE - MIT license
 ├── sachin.csv - file containing all the data about Sachin Tendulkar
