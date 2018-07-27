@@ -8,7 +8,7 @@ I have data of matches and runs scored from past matches from Sachin Tendulkar's
 
 Now about the technology stack, I have used Node.js to handle Back-End and React.js for Front-End. The whole data from sachin's career has beed fed to elasticsearch, and the elastic server is hosted remotely using [bonsai.io](bonsai.io). The server queries elastic server on behalf of client and provides it an API end point at `'/aggregations'`, this querying part of elasticsearch could be done by client also but I didn't want the Front-End engineer (in this case I'm both) to go through hell so I simplified and provided an API endpoint to client instead. I have used `c3.js` to plot chart based on data retrieved from elastic server. `c3.js` is a toned-down version `d3.js` which deals with creating low level SVG graphics. I didn't have time to learn `d3.js` completely to use in this project so I have used `c3.js` in my project. `Bootstrap` is also used to beautify the project but I have not made the site responsive, it works fine on PCs. I have used `jQuery` here and there but I have tried to use it as little as possible. `React Router` is used to handle the requests from client-side directly instead of involving the server, this makes the navigation from one page to another a very pleasant experience. Webpack is used to bundle the compiled JavaScript into a `bundle.js` file and css into `style.css`. I have used `scss` preprocessor but I haven't actually fully optimized the use of it and written pure `css` into it. `Babel` is used to convert our `ES6` code into `ES5` code, some of the plugins like `transform-class-properties` is used to fully utilize the use of `class` in JavaScript. I have also included `Jest` to test the Components and functions but that is for the future expansion, I haven't actually written any test cases for testing the components yet.
 
-Now about deployment, I have used Heroku to deploy this application to the world wide web at the domain [sachinalize.herokuapp.com](http://sachinalize.herokuapp.com). For the first time I have tried to optimize my code for production. Still I can include gZip compression and other minifying CSS,JS and stuff but I didn't do it because production and deployment wasn't the main concern.
+Now about deployment, I have used Heroku to deploy this application to the world wide web at the domain [sachinalize.herokuapp.com](http://sachinalize.herokuapp.com). For the first time I have tried to optimize my code for production. Still I can include gZip compression and other minifying CSS,JS and stuff but I didn't do it because production and deployment wasn't the main concern. *please note that the deployment may not work sometimes because the heroku server goes to sleep frequently.*
 
 ## Sitemap
 
@@ -24,7 +24,7 @@ There are four(4) pages in the site. The pages are Home, Analytics, Comparison, 
 
 ## Directory structure
 
-```md
+```markdown
 ├── es-helper - helper queries related to elasticsearch and other stuff like mapping info for the document
 │   ├── mapping-info
 │   └── queries
@@ -62,6 +62,7 @@ There are four(4) pages in the site. The pages are Home, Analytics, Comparison, 
 - chage working directory using `cd sachinalize`
 - do `npm install`
 - run server locally using `npm start`
+- go to `localhost:3000`
 - identify bugs, implement improvements, report it in issues, raise a PR
 
 P E A C E
